@@ -1,41 +1,41 @@
 # MII-TFM-Web
-Este proyecto forma parte del Trabajo de Fin de Master del Master en Ingeniería Informática de la UOC.
+Este proyecto forma parte del Trabajo de Fin de Master del Master en Ingeniería Informática de la UOC.  
 
-Se puede visitar la web en:
-https://iasrevenge.retrobytes.es
+Se puede visitar la web en:  
+https://iasrevenge.retrobytes.es  
 
 ## General
-Esta página web está hecha con Angular.
-Se ha dockerizado tanto para su ejecución como para su desarrollo.
+Esta página web está hecha con Angular.  
+Se ha dockerizado tanto para su ejecución como para su desarrollo.  
 
 ## Configuración previa
-Crear un fichero .env con el siguiente contenido:
-INAME=angular-devenv
-NODE_VERSION=25-alpine
-NODE_DEVENV_VERSION=25-trixie
-UNAME=marco
+Crear un fichero .env con el siguiente contenido:  
+INAME=angular-devenv  
+NODE_VERSION=25-alpine  
+NODE_DEVENV_VERSION=25-trixie  
+UNAME=marco  
 
 ## Ejecutar en local
-docker compose up app-prod
-Para ver la web conectarse a:
-http://localhost:8080
+docker compose up app-prod  
+Para ver la web conectarse a:  
+http://localhost:8080  
 
 ## Entrar en el entorno de desarrollador
-Ejecutar ./startdevenv
-Se entra en un contenedor donte está instalado Angular y vim.
+Ejecutar ./startdevenv  
+Se entra en un contenedor donte está instalado Angular y vim.  
 
-Para lanzar la app en modo depuración, ejecutar en otro terminal:
-./startdevenv server
-Para ver la web conectarse a:
-http://localhost:4200
-Para ver los logs, en otro terminal ejecutar:
-./startdevenv logs
+Para lanzar la app en modo depuración, ejecutar en otro terminal:  
+./startdevenv server  
+Para ver la web conectarse a:  
+http://localhost:4200  
+Para ver los logs, en otro terminal ejecutar:  
+./startdevenv logs  
 
 ## Añadir ejecutale del juego
-Para que los enlaces de ejecución del juego funcionen, hay que copiar
-el contenido del proyecto game a la carpeta /public/game
-Por ejemplo:
-cp -r game/html/build/dist web/public/game
+Para que los enlaces de ejecución del juego funcionen, hay que copiar  
+el contenido del proyecto game a la carpeta /public/game  
+Por ejemplo:  
+cp -r game/html/build/dist web/public/game  
 
 # IAsRevenge
 
