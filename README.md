@@ -1,6 +1,9 @@
 # MII-TFM-Web
 Este proyecto forma parte del Trabajo de Fin de Master del Master en Ingeniería Informática de la UOC.
 
+Se puede visitar la web en:
+https://iasrevenge.retrobytes.es
+
 ## General
 Esta página web está hecha con Angular.
 Se ha dockerizado tanto para su ejecución como para su desarrollo.
@@ -25,12 +28,14 @@ Para lanzar la app en modo depuración, ejecutar en otro terminal:
 ./startdevenv server
 Para ver la web conectarse a:
 http://localhost:4200
+Para ver los logs, en otro terminal ejecutar:
+./startdevenv logs
 
 ## Añadir ejecutale del juego
 Para que los enlaces de ejecución del juego funcionen, hay que copiar
 el contenido del proyecto game a la carpeta /public/game
 Por ejemplo:
-cp -r game/html/build/dist web/public/game 
+cp -r game/html/build/dist web/public/game
 
 # IAsRevenge
 
