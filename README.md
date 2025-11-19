@@ -10,10 +10,12 @@ Se ha dockerizado tanto para su ejecución como para su desarrollo.
 
 ## Configuración previa
 Crear un fichero .env con el siguiente contenido:  
+```
 INAME=angular-devenv  
 NODE_VERSION=25-alpine  
 NODE_DEVENV_VERSION=25-trixie  
 UNAME=marco  
+```
 
 ## Ejecutar en local
 docker compose up app-prod  
@@ -21,21 +23,30 @@ Para ver la web conectarse a:
 http://localhost:8080  
 
 ## Entrar en el entorno de desarrollador
-Ejecutar ./startdevenv  
+Ejecutar  
+```bash
+./startdevenv
+```
 Se entra en un contenedor donte está instalado Angular y vim.  
 
 Para lanzar la app en modo depuración, ejecutar en otro terminal:  
-./startdevenv server  
+```bash
+./startdevenv server
+```
 Para ver la web conectarse a:  
 http://localhost:4200  
 Para ver los logs, en otro terminal ejecutar:  
-./startdevenv logs  
+```bash
+./startdevenv logs
+```
 
 ## Añadir ejecutale del juego
 Para que los enlaces de ejecución del juego funcionen, hay que copiar  
 el contenido del proyecto game a la carpeta /public/game  
 Por ejemplo:  
-cp -r game/html/build/dist web/public/game  
+```bash
+cp -r game/html/build/dist web/public/game
+```
 
 # IAsRevenge
 
