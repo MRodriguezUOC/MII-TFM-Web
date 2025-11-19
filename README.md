@@ -1,5 +1,7 @@
 # MII-TFM-Web
+Este proyecto forma parte del Trabajo de Fin de Master del Master en Ingeniería Informática de la UOC.
 
+## General
 Esta página web está hecha con Angular.
 Se ha dockerizado tanto para su ejecución como para su desarrollo.
 
