@@ -5,9 +5,9 @@ services:
       dockerfile: Dockerfile.prod
       args:
         NODE_VERSION: ${NODE_VERSION}
-    image: mii-tfm-web
+    image: mii-tfm/web
     ports:
-      - "8080:4200"
+      - "8080:80"
 
   app-dev:
     build:
@@ -15,6 +15,7 @@ services:
       dockerfile: Dockerfile.dev
       args:
         NODE_VERSION: ${NODE_VERSION}
+    image: mii-tfm/web-dev
     ports:
       - "4200:4200"
     develop:
