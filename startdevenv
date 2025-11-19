@@ -1,0 +1,52 @@
+#!/bin/bash
+
+export $(grep -v '^#' .env | xargs)
+
+case "$1" in
+  "status")
+    docker container ls -a | grep "$INAME"
+    exit 
+    ;;
+  "rm")
+    docker container rm $INAME
+    exit 
+    ;;
+  "stop")
+    docker container stop $INAME
+    exit 
+    ;;
+  "server")
+    SUP=$(docker compose ls | grep -c "web")
+    if [ $SUP -eq 0 ]; then
+      docker compose watch app-dev
+    fi
+    exit
+    ;;
+esac
+
+if [ $(docker container ls -a | grep "$INAME" | grep -c "Up ") -eq 1 ]; then
+  echo "Exec"
+  docker exec -i -t $INAME /bin/bash
+  exit $?
+fi
+
+if [ $(docker container ls -a | grep "$INAME" | grep -c "Exited ") -eq 1 ]; then
+  echo "Start"
+  #docker start -a -i $INAME
+  docker start $INAME
+  docker exec -i -t $INAME /bin/bash
+  exit $?
+fi
+
+docker build \
+  --build-arg NODE_VERSION=${NODE_DEVENV_VERSION} \
+  --build-arg UNAME=${UNAME} \
+  --build-arg UID=${UID} \
+  --build-arg GID=${GID} \
+  -t="$INAME"  .
+
+if [ $? -eq 0 ]; then
+  docker run -i -v .:/usr/src/app -t --name $INAME $INAME
+else
+  echo "Build $INAME fail."
+fi

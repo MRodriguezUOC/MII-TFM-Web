@@ -1,0 +1,12 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =7
+let g:netrw_dirhist_7='/home/marco/Documents/Trabajos/XTEC/ITB/3-ASIX/MP16-CHE/UF1/A3/srv-conf'
+let g:netrw_dirhist_6='/home/marco/.config/Debauchee'
+let g:netrw_dirhist_5='/home/marco/Documents/Trabajos/XTEC/ITB/3-ASIX/MP16-CHE/UF1/A3/phpmysqli'
+let g:netrw_dirhist_4='/home/marco/Documents/Trabajos/XTEC/ITB/3-ASIX/MP16-CHE/UF1/A3/www/interpol/tpl'
+let g:netrw_dirhist_3='/home/marco/Documents/Trabajos/XTEC/ITB/3-ASIX/MP16-CHE/UF1/A3/www/interpol'
+let g:netrw_dirhist_2='/home/marco/Documents/Trabajos/XTEC/ITB/3-ASIX/MP16-CHE/UF1/A3/www/interpol/inc/cmds'
+let g:netrw_dirhist_1='/home/marco/Documents/Trabajos/XTEC/ITB/3-ASIX/MP16-CHE/UF1/A3/www/interpol/inc'
+let g:netrw_dirhist_0='/home/marco/Documents/Trabajos/XTEC/ITB/3-ASIX/MP16-CHE/UF1/A3/www/interpol'
+let g:netrw_dirhist_9='/home/marco/Documents/Trabajos/XTEC/ITB/3-ASIX/MP16-CHE/UF1/A3/www/interpol/tpl'
+let g:netrw_dirhist_8='/home/marco/Documents/Trabajos/XTEC/ITB/3-ASIX/MP16-CHE/UF1/A3/www/interpol'

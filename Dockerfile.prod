@@ -1,0 +1,12 @@
+#FROM: https://blog.cloudboost.io/developing-angular-applications-using-docker-6f4835a75195
+
+ARG NODE_VERSION
+
+FROM node:${NODE_VERSION} AS prod
+RUN mkdir -p /app
+WORKDIR /app
+COPY package.json /app/
+RUN ["npm", "install"]
+COPY . /app
+EXPOSE 4200/tcp
+CMD ["npm", "start", "--", "--host", "0.0.0.0", "--poll", "500"]
