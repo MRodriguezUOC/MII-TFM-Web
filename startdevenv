@@ -15,10 +15,15 @@ case "$1" in
     docker container stop $INAME
     exit 
     ;;
+  "logs")
+    docker compose logs -f app-dev
+    exit
+    ;;
   "server")
     SUP=$(docker compose ls | grep -c "web")
     if [ $SUP -eq 0 ]; then
       docker compose watch app-dev
+      docker compose stop app-dev
     fi
     exit
     ;;
