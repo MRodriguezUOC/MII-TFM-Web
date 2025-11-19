@@ -5,6 +5,13 @@ Este proyecto forma parte del Trabajo de Fin de Master del Master en Ingeniería
 Esta página web está hecha con Angular.
 Se ha dockerizado tanto para su ejecución como para su desarrollo.
 
+## Configuración previa
+Crear un fichero .env con el siguiente contenido:
+INAME=angular-devenv
+NODE_VERSION=25-alpine
+NODE_DEVENV_VERSION=25-trixie
+UNAME=marco
+
 ## Ejecutar en local
 docker compose up app-prod
 Para ver la web conectarse a:
