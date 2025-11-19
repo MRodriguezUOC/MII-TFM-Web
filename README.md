@@ -18,7 +18,9 @@ UNAME=marco
 ```
 
 ## Ejecutar en local
+```bash
 docker compose up app-prod  
+```
 Para ver la web conectarse a:  
 http://localhost:8080  
 
