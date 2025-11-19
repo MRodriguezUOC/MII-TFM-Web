@@ -2,11 +2,16 @@
 
 ARG NODE_VERSION
 
-FROM node:${NODE_VERSION} AS prod
+FROM node:${NODE_VERSION} AS build
 RUN mkdir -p /app
 WORKDIR /app
 COPY package.json /app/
 RUN ["npm", "install"]
 COPY . /app
-EXPOSE 4200/tcp
-CMD ["npm", "start", "--", "--host", "0.0.0.0", "--poll", "500"]
+RUN ["npm", "run","build","--prod"]
+
+FROM nginx:alpine
+COPY --from=build /app/dist/IAsRevenge/browser /usr/share/nginx/html
+
+EXPOSE 80/tcp
+CMD ["nginx", "-g", "daemon off;"]
