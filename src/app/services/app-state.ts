@@ -1,4 +1,5 @@
 import { Injectable, signal } from '@angular/core';
+import { version } from '../../../package.json';
 
 @Injectable({
   providedIn: 'root',

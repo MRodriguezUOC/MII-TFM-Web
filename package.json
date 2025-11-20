@@ -1,6 +1,6 @@
 {
   "name": "ias-revenge",
-  "version": "0.1.0",
+  "version": "alpha1",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
