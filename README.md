@@ -2,7 +2,7 @@
 Este proyecto forma parte del Trabajo de Fin de Master del Master en Ingeniería Informática de la UOC.  
 
 Se puede visitar la web en:  
-https://iasrevenge.retrobytes.es  
+https://iasrevenge.bytesretro.es  
 
 ## General
 Esta página web está hecha con Angular.  
