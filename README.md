@@ -15,6 +15,9 @@ INAME=angular-devenv
 NODE_VERSION=25-alpine  
 NODE_DEVENV_VERSION=25-trixie  
 UNAME=marco  
+VERSION="alpha1"..
+REGISTRY="tu-serve..r"
+TAG="mii-tfm/web"..
 ```
 
 ## Ejecutar en local
