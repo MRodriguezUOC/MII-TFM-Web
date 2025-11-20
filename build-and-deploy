@@ -1,0 +1,14 @@
+#!/bin/bash
+source .env
+
+VER="$VERSION"
+REG="$REGISTRY"
+BTAG="$TAG"
+
+if [ "$1" != "" ]; then
+  VER=$1
+fi
+
+echo docker compose build app-prod && \
+echo docker tag $BTAG $REG/$BTAG:$VER && \
+echo docker push $REG/$TAG:$VER
