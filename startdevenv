@@ -1,10 +1,11 @@
 #!/bin/bash
 
-export $(grep -v '^#' .env | xargs)
+source .env
+#export $(grep -v '^#' .env | xargs)
 
 case "$1" in
   "status")
-    docker container ls -a | grep "$INAME"
+    docker container ls -a | grep "$INAME\|$TAG-dev"
     exit 
     ;;
   "rm")
@@ -15,16 +16,25 @@ case "$1" in
     docker container stop $INAME
     exit 
     ;;
+  "stop-server")
+    docker compose stop app-dev 
+    exit 
+    ;;
   "logs")
     docker compose logs -f app-dev
     exit
     ;;
   "server")
     SUP=$(docker compose ls | grep -c "web")
+    echo $SUP
     if [ $SUP -eq 0 ]; then
       docker compose watch app-dev
       docker compose stop app-dev
     fi
+    exit
+    ;;
+  *)
+    echo "User ./$0 [logs|rm|status|stop|stop-server|server]"
     exit
     ;;
 esac

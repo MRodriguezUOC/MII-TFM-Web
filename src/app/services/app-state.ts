@@ -6,5 +6,5 @@ import { version } from '../../../package.json';
 })
 export class AppState {
   //protected readonly title = signal('IAsRevenge Beta'); 
-  public readonly title = signal('IAsRevenge pre-Alpha');
+  public readonly title = signal('IAsRevenge (' + version + ")");
 }
