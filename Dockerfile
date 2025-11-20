@@ -9,16 +9,16 @@ FROM node:${NODE_VERSION}
 
 RUN apt update && apt install vim tmux less -y && apt clean
 
-RUN mkdir -p /home/node/.bash-git-prompt
-RUN mkdir -p /home/node/.vim
 RUN mkdir -p /usr/src/app
 
-COPY /devenv/vimrc /home/node/.vimrc
-COPY /devenv/bashrc /home/node/.bashrc
-COPY /devenv/tmux.conf /home/node/.tmux.conf
-COPY /devenv/bash-git-prompt /home/node/.bash-git-prompt
-COPY /devenv/vim /home/node/.vim
-COPY /devenv/bash-completion-git /usr/share/bash-completion/completions/git
+COPY /devenv/env.tgz /home/node
+COPY /devenv/bash-completion-git.tgz /home/node
+WORKDIR /home/node
+RUN tar -xzvf env.tgz
+RUN rm env.tgz
+WORKDIR /
+RUN tar -xzvf /home/node/bash-completion-git.tgz
+RUN rm /home/node/bash-completion-git.tgz
 
 RUN chown node:node -R /home/node
 RUN chown node:node -R /usr/src/app
