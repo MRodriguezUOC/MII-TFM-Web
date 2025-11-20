@@ -11,18 +11,18 @@ Se ha dockerizado tanto para su ejecución como para su desarrollo.
 ## Configuración previa
 Crear un fichero .env con el siguiente contenido:  
 ```
-INAME=angular-devenv  
-NODE_VERSION=25-alpine  
-NODE_DEVENV_VERSION=25-trixie  
-UNAME=marco  
-VERSION="alpha1"..
-REGISTRY="tu-serve..r"
-TAG="mii-tfm/web"..
+INAME=angular-devenv
+NODE_VERSION=25-alpine
+NODE_DEVENV_VERSION=25-trixie
+UNAME=marco
+VERSION="alpha1"
+REGISTRY="tu-server"
+TAG="mii-tfm/web"
 ```
 
 ## Ejecutar en local
 ```bash
-docker compose up app-prod  
+docker compose up app-prod
 ```
 Para ver la web conectarse a:  
 http://localhost:8080  
