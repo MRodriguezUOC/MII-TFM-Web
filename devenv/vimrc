@@ -108,4 +108,6 @@ if has("autocmd")
         filetype on
         " Treat .json files as .js
         autocmd BufNewFile,BufRead *.json setfiletype json syntax=javascript
+        autocmd FileType typescript set path+=**/*.ts
+        autocmd FileType typescript set suffixesadd=.ts
 endif
