@@ -53,7 +53,7 @@ Por ejemplo:
 cp -r game/html/build/dist web/public/game
 ```
 
-# IAsRevenge
+# IAs Revenge
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.10.
 
