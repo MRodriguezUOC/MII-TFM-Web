@@ -4,11 +4,27 @@ source .env
 VER="$VERSION"
 REG="$REGISTRY"
 BTAG="$TAG"
+GSRC="$GAME_SRC"
+GDST="$GAME_DST"
 
 if [ "$1" != "" ]; then
   VER=$1
 fi
 
-docker compose build app-prod && \
-docker tag $BTAG $REG/$BTAG:$VER && \
-docker push $REG/$TAG:$VER
+if [ -d "$GAME_SRC" ]; then
+	read -p "Update game [y/n]: " YN
+	if [ "$YN" == "y" ]; then
+		rm -rf $GDST/*
+		cp -r $GSRC/* $GDST
+	fi
+fi
+
+docker compose build app-prod
+
+if [ $? -eq 0 ]; then
+	read -p "Deploy to registry ($REG) [y/n]: " YN
+	if [ "$YN" == "y" ]; then
+		docker tag $BTAG $REG/$BTAG:$VER && \
+		docker push $REG/$TAG:$VER
+	fi
+fi

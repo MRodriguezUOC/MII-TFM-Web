@@ -18,6 +18,8 @@ UNAME=marco
 VERSION="alpha1"
 REGISTRY="tu-server"
 TAG="mii-tfm/web"
+GAME_SRC="../game/html/build/dist"
+GAME_DST="public/game"
 ```
 
 ## Ejecutar en local
@@ -52,6 +54,12 @@ Por ejemplo:
 ```bash
 cp -r game/html/build/dist web/public/game
 ```
+Tambien se puede utilizar el script
+```bash
+./build-and-deploy
+```
+Que copy los archivos del juego, crea una imagen de docker, con la versión de
+producción, y la sube al registro, indicado en el archivo .env.
 
 # IAs Revenge
 
