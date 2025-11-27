@@ -1,0 +1,13 @@
+#!/bin/bash
+source .env
+
+GSRC="$GAME_SRC"
+GDST="$GAME_DST"
+
+if [ -d "$GAME_SRC" ]; then
+	read -p "Update game [y/n]: " YN
+	if [ "$YN" == "y" ]; then
+		rm -rf $GDST/*
+		cp -r $GSRC/* $GDST
+	fi
+fi

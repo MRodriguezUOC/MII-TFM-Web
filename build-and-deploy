@@ -11,13 +11,7 @@ if [ "$1" != "" ]; then
   VER=$1
 fi
 
-if [ -d "$GAME_SRC" ]; then
-	read -p "Update game [y/n]: " YN
-	if [ "$YN" == "y" ]; then
-		rm -rf $GDST/*
-		cp -r $GSRC/* $GDST
-	fi
-fi
+./update-game-folder
 
 docker compose build app-prod
 
@@ -25,6 +19,6 @@ if [ $? -eq 0 ]; then
 	read -p "Deploy to registry ($REG) [y/n]: " YN
 	if [ "$YN" == "y" ]; then
 		docker tag $BTAG $REG/$BTAG:$VER && \
-		docker push $REG/$TAG:$VER
+		docker push $REG/$BTAG:$VER
 	fi
 fi
