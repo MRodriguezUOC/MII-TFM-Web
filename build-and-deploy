@@ -1,0 +1,43 @@
+#!/bin/bash
+source .env
+
+VER="$VERSION"
+REG="$REGISTRY"
+BTAG="$TAG"
+GSRC="$GAME_SRC"
+GDST="$GAME_DST"
+
+if [ "$1" != "" ]; then
+  VER=$1
+fi
+
+GVERSION=$(grep "^projectVersion=" ../game/gradle.properties | cut -d'=' -f2)
+WVERSION=$(grep "version" package.json | cut -d':' -f2 | cut -d'"' -f2)
+if [ "$GVERSION" != "$WVERSION" ]; then
+    echo "Game version: $GVERSION"
+    echo "Web version: $WVERSION"
+    read -p "Sync game version -> web version [y/n]: " YN
+    if [ "$YN" == "y" ]; then
+		cp package.json package.json.bck
+		sed -i 's/  "version": "[^"]*"/  "version": "'"$GVERSION"'"/' package.json
+		if [ $? -ne 0 ]; then
+			exit -1
+		fi
+		rm package.json.bck
+		VER=$GVERSION
+    fi
+fi
+
+./update-game-folder
+./update-downloads-folder
+
+docker compose build app-prod
+
+if [ $? -eq 0 ]; then
+	read -p "Deploy to registry ($REG) [y/n]: " YN
+	if [ "$YN" == "y" ]; then
+      echo "Uploading $BTAG:$VER"
+		docker tag $BTAG $REG/$BTAG:$VER && \
+		docker push $REG/$BTAG:$VER
+	fi
+fi

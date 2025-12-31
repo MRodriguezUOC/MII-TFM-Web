@@ -1,0 +1,13 @@
+<section class="downloads">
+  <h1>Descargas</h1>
+  <p>Elige tu plataforma para descargar la aplicación:</p>
+
+  <ul>
+    <li *ngFor="let item of downloads">
+      <a [href]="getFileName(item)" download>
+        <span class="icon">{{ getIcon(item.platform) }}</span>
+        <span class="name">{{ item.name }} (v{{ appState.version() }})</span>
+      </a>
+    </li>
+  </ul>
+</section>

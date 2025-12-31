@@ -1,0 +1,29 @@
+#!/bin/bash
+source .env
+
+GSRC="$GAME_BIN"
+GDST="$GAME_DWN"
+
+if [ "$GDST" == "" ]; then
+	echo "Invalid GDST"
+	exit -1
+fi	
+
+if [ -d "$GSRC" ]; then
+	read -p "Update downloads files [y/n]: " YN
+	if [ "$YN" == "y" ]; then
+      read -p "Delete remote versions [y/n]: " YN
+      if [ "$YN" == "y" ]; then
+		   rm -f $GDST/*
+      fi
+		#ln $GSRC/*$VERSION* $GDST
+		cp -v $GSRC/*$VERSION* $GDST
+		ls $GDST
+      read -p "Delete local versions [y/n]: " YN
+      if [ "$YN" == "y" ]; then
+         rm -f $GSRC/*
+      fi
+	fi
+else
+  echo "$GSRC not exist"
+fi

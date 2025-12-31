@@ -1,0 +1,80 @@
+#!/bin/bash
+
+source .env
+#export $(grep -v '^#' .env | xargs)
+
+buildImage(){
+   docker build \
+     --build-arg NODE_VERSION=${NODE_DEVENV_VERSION} \
+     --build-arg UNAME=${UNAME} \
+     --build-arg UID=${UID} \
+     --build-arg GID=${GID} \
+     -t="$INAME"  .
+   if [ $? -ne 1 ]; then
+      echo "Build $INAME fail"
+      exit -1
+   fi
+}
+
+if [ $# -ge 1 ]; then
+   case "$1" in
+     "status")
+       docker container ls -a | grep "$INAME\|$TAG-dev"
+       exit 
+       ;;
+     "rm")
+       docker container rm $INAME
+       exit 
+       ;;
+     "rmimg")
+       docker image rm $INAME
+       exit 
+       ;;
+     "buildImage")
+       buildImage
+       exit 
+       ;;
+     "stop")
+       docker container stop $INAME
+       exit 
+       ;;
+     "stop-server")
+       docker compose stop app-dev
+       exit 
+       ;;
+     "logs")
+       docker compose logs -f app-dev
+       exit
+       ;;
+     "server")
+       SUP=$(docker compose ls | grep -c "web")
+       if [ $SUP -eq 0 ]; then
+         docker compose watch app-dev
+         docker compose stop app-dev
+       fi
+       exit
+       ;;
+     *)
+       echo "User $0 [logs|rm|status|stop|stop-server|server]"
+       exit
+       ;;
+   esac
+fi
+
+if [ $(docker container ls -a | grep "$INAME" | grep -c "Up ") -eq 1 ]; then
+  echo "Exec"
+  docker exec -i -t $INAME /bin/bash
+  exit $?
+fi
+
+if [ $(docker container ls -a | grep "$INAME" | grep -c "Exited ") -eq 1 ]; then
+  echo "Start"
+  docker start $INAME
+  exit $?
+fi
+
+if [ $(docker image ls $INAME | grep -c) -eq 0 ]; then
+   buildImage
+fi
+
+docker run -i -v .:/usr/src/app -t --name $INAME $INAME

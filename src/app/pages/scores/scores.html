@@ -1,0 +1,35 @@
+<section class="scores">
+  <h1>🏆 Clasificación</h1>
+
+  @if (loading()) {
+    <p>Cargando puntuaciones...</p>
+  }
+
+  @if (error()) {
+    <p class="error">{{ error() }}</p>
+  }
+
+  @if (!loading() && !error()) {
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Jugador</th>
+          <th>Puntos</th>
+          <th>Fecha</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (score of scores(); track score.id; let i = $index) {
+          <tr>
+            <td>{{ i + 1 }}</td>
+            <td>{{ score.username }}</td>
+            <td>{{ score.points }}</td>
+            <td>{{ score.playedAt | date:'short' }}</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  }
+</section>
+

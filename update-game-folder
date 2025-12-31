@@ -1,0 +1,18 @@
+#!/bin/bash
+source .env
+
+GSRC="$GAME_SRC"
+GDST="$GAME_DST"
+
+if [ "$GDST" == "" ]; then
+	echo "Invalid GDST"
+	exit -1
+fi	
+
+if [ -d "$GAME_SRC" ]; then
+	read -p "Update game files [y/n]: " YN
+	if [ "$YN" == "y" ]; then
+		rm -rf $GDST/*
+		cp -r $GSRC/* $GDST
+	fi
+fi
