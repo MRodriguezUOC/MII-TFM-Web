@@ -9,10 +9,19 @@ if [ "$GDST" == "" ]; then
 	exit -1
 fi	
 
+if [ ! -d "$GDST" ]; then
+   mkdir -p $GDST
+fi
+
 if [ -d "$GAME_SRC" ]; then
 	read -p "Update game files [y/n]: " YN
 	if [ "$YN" == "y" ]; then
 		rm -rf $GDST/*
 		cp -r $GSRC/* $GDST
+   else
+      read -p "Delete game file [y/n]: " YN
+      if [ "$YN" == "y" ]; then
+		   rm -rf $GDST/*
+      fi
 	fi
 fi

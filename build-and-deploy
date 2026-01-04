@@ -29,6 +29,7 @@ if [ "$GVERSION" != "$WVERSION" ]; then
 fi
 
 ./update-game-folder
+./update-cdn-folder
 ./update-downloads-folder
 
 docker compose build app-prod

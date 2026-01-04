@@ -1,0 +1,43 @@
+#!/bin/bash
+source .env
+
+IAF="IAsRevenge-html"
+GSRC="$GAME_SRC"
+GDST="$GAME_DWN$IAF"
+GTMP="${GAME_DWN}tmp"
+
+if [ "$GDST" == "" ]; then
+	echo "Invalid GDST"
+	exit -1
+fi	
+
+if [ -d "$GSRC" ]; then
+	read -p "Update CDN files [y/n]: " YN
+	if [ "$YN" == "y" ]; then
+      read -p "Use rsync [y/n]: " YN
+      if [ "$YN" == "y" ]; then
+         rsync -avr --delete $GSRC/ $GDST/
+      else
+         read -p "Delete remote versions [y/n]: " YN
+         mkdir -p $GTMP
+         cp -p -r -v $GSRC/* $GTMP
+         if [ -d "$GDST.old" ]; then
+            rm -rf $GDST.old
+         fi
+         mv $GDST $GDST.old
+         mv $GTMP $GDST
+         if [ "$YN" == "y" ]; then
+            rm -rf $GDST.old
+         fi
+         ls $GDST
+         read -p "Delete local versions [y/n]: " YN
+         if [ "$YN" == "y" ]; then
+            if [ -d "$GSRC" ]; then
+               rm -rf $GSRC/*
+            fi
+         fi
+      fi
+	fi
+else
+  echo "$GSRC not exist"
+fi

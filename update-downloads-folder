@@ -9,6 +9,10 @@ if [ "$GDST" == "" ]; then
 	exit -1
 fi	
 
+if [ ! -d "$GDST" ]; then
+   mkdir -p $GDST
+fi
+
 if [ -d "$GSRC" ]; then
 	read -p "Update downloads files [y/n]: " YN
 	if [ "$YN" == "y" ]; then

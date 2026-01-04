@@ -16,6 +16,10 @@ buildImage(){
    fi
 }
 
+if [ ! -d "$GAME_DST" ]; then
+   mkdir -p $GAME_DST
+fi
+
 if [ $# -ge 1 ]; then
    case "$1" in
      "status")

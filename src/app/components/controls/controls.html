@@ -1,0 +1,46 @@
+<section class="controls">
+    <button
+        class="controls-header"
+        (click)="toggle()"
+        [attr.aria-expanded]="isOpen()"
+        >
+        <span>🎮 Guía de controles</span>
+        <span class="arrow" [class.open]="isOpen()">▼</span>
+    </button>
+
+    <div class="controls-content" *ngIf="isOpen()">
+        <table class="controls-table">
+            <thead>
+                <tr>
+                    <th>Modo</th>
+                    <th>Acción</th>
+                    <th>Control</th>
+                </tr>
+            </thead>
+
+            <tbody>
+            <ng-container *ngFor="let section of sections">
+                <tr class="section">
+                    <td colspan="3">{{ section.icon }} {{ section.title }}</td>
+                </tr>
+
+                <tr *ngFor="let c of section.controls">
+                    <td>{{ c.mode }}</td>
+                    <td>{{ c.action }}</td>
+                    <td>
+                        <span
+                            *ngFor="let key of c.keys"
+                            class="key"
+                            >
+                            {{ key }}
+                        </span>
+                        <span *ngIf="c.note">
+                            {{ c.note }}
+                        </span>
+                    </td>
+                </tr>
+            </ng-container>
+            </tbody>
+        </table>
+    </div>
+</section>
